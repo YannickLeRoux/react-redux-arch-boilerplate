@@ -28,14 +28,14 @@ export const createAction = (actionType, fn) => {
           .then(payload => dispatch(fnDispatch, actionType, payload))
           .catch(err => dispatch(fnDispatch, actionType, err))
       }
-      return dispatch(fnDispatch, actionType, args); 
+      return dispatch(fnDispatch, actionType, args);
     };
   }
 };
 
 export const combineActions = (...actions) => {
   return () => {
-    const args = arguments;
+    const args = actions;
     return fnDispatch => {
       actions.forEach(action => action(args)(fnDispatch));
     };
